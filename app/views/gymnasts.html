@@ -1,0 +1,45 @@
+<!-- // this is the front which will link to my gymnasts.js which is an API that i created
+// the front end which is my hbs folder will call my API and then display the gymnasts to the users. It gets the data
+and displays it -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>The Gymnasts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+  </head>
+  <body>
+    <div id="myGymnasts"></div>
+    <script>
+      fetch("/gymnasts")
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(gymnastsData) {
+          gymnastsData.map(function(gymnast) {
+            var row = document.createElement("div");
+            row.innerHTML = `${gymnast.firstName} ${gymnast.lastName} ${
+              gymnast.country
+            } ${gymnast.skill}`;
+
+            document.getElementById("myGymnasts").appendChild(row);
+            console.log(gymnast);
+
+            // var row2 = document.createElement("div");
+            // row2.innerHTML = gymnast.lastName;
+
+            // document.getElementById("myGymnasts").appendChild(row2);
+          });
+        });
+
+      // the create element makes a new div, which i store in a varibale called row
+      // i then make that innner html to be equal to the Gymnast  + first name/ or whatever (last name)
+      // i append that row to the main div
+      //   var myGymnasts = document.createElement(gymnastsData);
+      //   return myGymnasts(gymnastsData);
+    </script>
+  </body>
+</html>
